@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+    <h3 class="mb-3">Student Form</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.name.label }}
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.email.label }}
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.age.label }}
+            {{ form.age }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.course.label }}
+            {{ form.course }}
+        </div>
+
+        <button class="btn btn-primary">Save Student</button>
+        <a href="{% url 'list' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+{% endblock %}

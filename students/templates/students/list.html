@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="mb-4">📊 Dashboard Overview</h3>
+
+<!-- Cards -->
+<div class="row g-3">
+
+    <div class="col-md-4">
+        <div class="card text-white bg-primary shadow">
+            <div class="card-body">
+                <h5>Total Students</h5>
+                <h2>{{ students|length }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-success shadow">
+            <div class="card-body">
+                <h5>Active Courses</h5>
+                <h2>5</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-warning shadow">
+            <div class="card-body">
+                <h5>New Admissions</h5>
+                <h2>12</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Student Table -->
+<div class="card mt-4 shadow">
+    <div class="card-header bg-dark text-white">
+        Student List
+    </div>
+
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Course</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.course }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" href="{% url 'edit' student.id %}">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete' student.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
